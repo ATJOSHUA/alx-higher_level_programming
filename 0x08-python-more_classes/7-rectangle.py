@@ -1,142 +1,96 @@
 #!/usr/bin/python3
-
-# 7-rectangle module
 """
-This module contains a class Rectangle
-
->>> Rectangle = __import__('7-rectangle').Rectangle
-
->>> my_rectangle = Rectangle(2, 4)
->>> print(type(my_rectangle))
-<class '7-rectangle.Rectangle'>
-
->>> dict_result = my_rectangle.__dict__
->>> print(dict(sorted(dict_result.items())))
-{'_Rectangle__height': 4, '_Rectangle__width': 2}
-
+Module 7-rectangle
+Contains class Rectangle with private attribute width and height,
+public area and perimeter methods, allows printing using any given symbol,
+deletes, and has public attribute to keep track of number of instances
 """
 
 
-class Rectangle:
-    """This is an class Rectangle with instance attribute heigth and width"""
+class Rectangle():
+    """
+    Defines class rectangle with private attribute width and height
 
+    Args:
+        width (int): width
+        height (int): height
+
+    Attributes:
+        number_of_instances (int): number of instances created and not deleted
+        print_symbol (any type): used to print string representation
+
+    Functions:
+        __init__(self, width, height)
+        width(self)
+        width(self, value)
+        height(self)
+        height(self, value)
+        area(self)
+        perimeter(self)
+        __str__(self)
+        __repr__(self)
+        __del__(self)
+    """
     number_of_instances = 0
-    print_symbol = '#'
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
-        """
-        initializes height and width of the rectangle
-        upon creation of an instance using property
-        getters and setters
-
-        >>> my_rectangle = Rectangle(2, '4')
-        Traceback (most recent call last):
-            ...
-        TypeError: height must be an integer
-
-
-        >>> my_rectangle = Rectangle(0, 0)
-        >>> my_rectangle.width = 10
-        >>> my_rectangle.height = -3
-        Traceback (most recent call last):
-            ...
-        ValueError: height must be >= 0
-        """
+        """ Initialize rectangles """
         self.width = width
         self.height = height
         type(self).number_of_instances += 1
 
+    def __del__(self):
+        """ Deletes instance of class """
+        print("Bye rectangle...")
+        type(self).number_of_instances -= 1
+
     @property
     def width(self):
+        """ Getter returns width """
         return self.__width
 
     @width.setter
-    def width(self, width):
-        """
-        Property setter for the width
-        checks if the type for the width is an integer or < 0
-        if above conditions aren't met errors are raised
-        """
-        if type(width) is not int:
+    def width(self, value):
+        """ Setter sets width if int > 0 """
+        if not isinstance(value, int):
             raise TypeError("width must be an integer")
-        if width < 0:
+        if value < 0:
             raise ValueError("width must be >= 0")
-        self.__width = width
+        self.__width = value
 
     @property
     def height(self):
-        """Property getter for the height"""
+        """ Getter returns height """
         return self.__height
 
     @height.setter
-    def height(self, height):
-        """
-        Property setter for the height
-        checks if the type for the height is an integer or < 0
-        if above conditions aren't met errors are raised
-        """
-        if type(height) is not int:
+    def height(self, value):
+        """ Setter sets height if int > 0 """
+        if not isinstance(value, int):
             raise TypeError("height must be an integer")
-        if height < 0:
+        if value < 0:
             raise ValueError("height must be >= 0")
-        self.__height = height
+        self.__height = value
 
     def area(self):
-        """
-        The method area() returns the area of the rectangle
-        by taking the product of the width and height of the
-        rectangle instance
-
-        >>> my_rectangle = Rectangle(5, 8)
-        >>> my_rectangle.area()
-        40
-        """
-        return self.width * self.height
+        """ Return width * height """
+        return self.__width * self.__height
 
     def perimeter(self):
-        """
-        The method perimeter() return the perimeter of the
-        rectangle by taking the sum of width and height of the
-        rectangle, then multiplying the result by 2
-
-        If the width or height of the rectangle is 0 the 0 is
-        returned
-
-        >>> my_rectangle = Rectangle(5, 8)
-        >>> my_rectangle.perimeter()
-        26
-        >>> my_rectangle.height = 0
-        >>> my_rectangle.perimeter()
-        0
-        """
-        if self.height == 0 or self.width == 0:
+        """ Return 2*width + 2*height (or return 0 if width or height is 0)"""
+        if self.__width == 0 or self.__height == 0:
             return 0
-        return 2 * (self.width + self.height)
+        return (2 * self.__width) + (2 * self.height)
 
     def __str__(self):
-        """
-        The method __str__() is used to return the representation (drawing)
-        of the rectangle instance using #
-
-        If the width or the height is 0 an empty string is returned
-        """
-        if self.width == 0 or self.height == 0:
+        """ Prints rectangle with #'s """
+        if self.__width == 0 or self.__height == 0:
             return ""
-        shape_rep_array = []
-        for height in range(self.height):
-            shape_rep_array.append(self.print_symbol * self.width)
-            shape_rep_array.append("\n")
-        shape_rep_array.pop()
-        return "".join(shape_rep_array)
+        pic = "\n".join([str(self.print_symbol) * self.__width
+                         for rows in range(self.__height)])
+        return pic
 
     def __repr__(self):
-        return "Rectangle({}, {})".format(self.width, self.height)
-
-    def __del__(self):
-        type(self).number_of_instances -= 1
-        print("Bye rectangle...")
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod(verbose=True)
+        """ String representation to recreate new instance """
+        return "Rectangle({:d}, {:d})".format(self.width, self.height)
