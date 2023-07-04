@@ -1,26 +1,18 @@
 #!/usr/bin/python3
 
-"""
-function 0-add_integer
-adds two integers
-module "0-add_integer"
-"""
-
+"""contains a function to add two integers"""
 
 def add_integer(a, b=98):
-    """adds two numbers
-    >>> add_integer(4, 3)
-    7
-    >>> add_integer(5, 5)
-    10
+
+    """function that returns an integer
+    args:
+        a (int or float): first param
+        b (int or float): second param
+    Raises TypeError with corresponding message if a or b
+    isn't an int or a float
     """
-    fnum = 0
-    if type(a) is int or type(a) is float:
-        fnum += int(a)
-    else:
+    if type(a) not in [int, float]:
         raise TypeError("a must be an integer")
-    if type(b) is int or type(b) is float:
-        fnum += int(b)
-    else:
+    if type(b) not in [int, float]:
         raise TypeError("b must be an integer")
-    return fnum
+    return int(a) + int(b)
