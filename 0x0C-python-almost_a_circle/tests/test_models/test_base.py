@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-unitest
-"""
+"""unitest"""
 import unittest
 from models.base import Base
 
