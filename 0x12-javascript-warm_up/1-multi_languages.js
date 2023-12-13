@@ -1,7 +1,6 @@
 #!/usr/bin/node
-const myVar = 'C is fun';
-const myVar2 = 'Python is cool';
-const myVar3 = 'Javascript is amazing';
-console.log(myVar);
-console.log(myVar2);
-console.log(myVar3);
+// Graham . Paul (1-multi_languages.js)
+
+console.log('C is fun');
+console.log('Python is cool');
+console.log('JavaScript is amazing');
