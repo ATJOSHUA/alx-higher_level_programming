@@ -1,7 +1,8 @@
 #!/usr/bin/node
-const array = process.argv.slice(2);
-if (array[0] === undefined) {
-  console.log('No argument');
+// Graham S. Paul (3-value_arguments.js)
+
+if (process.argv[2]) {
+  console.log(process.argv[2]);
 } else {
-  console.log(array[0]);
+  console.log('No argument');
 }
