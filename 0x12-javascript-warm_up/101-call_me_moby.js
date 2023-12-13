@@ -1,6 +1,8 @@
 #!/usr/bin/node
-exports.callMeMoby = function (var1, callback) {
-  for (let i = 0; i < var1; i++) {
-    callback(var1);
+// Graham S. Paul (101-call_me_moby.js)
+
+exports.callMeMoby = (x, cb) => {
+  for (let i = 0; i < x; i++) {
+    cb();
   }
 };
