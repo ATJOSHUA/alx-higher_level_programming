@@ -1,5 +1,7 @@
 #!/usr/bin/node
-exports.addMeMaybe = function (var1, callback) {
-  var1 = var1 + 1;
-  callback(var1);
+// Graham S. Paul (102-add_me_maybe.js)
+
+exports.addMeMaybe = (num, cb) => {
+  const newnum = num + 1;
+  cb(newnum);
 };
