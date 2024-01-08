@@ -1,17 +1,13 @@
 #!/usr/bin/python3
-"""
-module
-"""
+"""Fetches https://alx-intranet.hbtn.io/status."""
+import urllib.request
 
 
-def find_peak(list_of_integers):
-    """method
-    """
-    tmp_num = 0
-    if len(list_of_integers) > 0:
-        for iter in list_of_integers:
-            if iter > tmp_num:
-                tmp_num = iter
-        return(tmp_num)
-    else:
-        pass
+if __name__ == "__main__":
+    req = urllib.request.Request("https://alx-intranet.hbtn.io/status")
+    with urllib.request.urlopen(req) as response:
+        body = response.read()
+        print("Body response:")
+        print("\t- type: {}".format(type(body)))
+        print("\t- content: {}".format(body))
+        print("\t- utf8 content: {}".format(body.decode("utf-8")))
